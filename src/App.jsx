@@ -6,10 +6,9 @@ import Navbar from './components/NavBar';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="container-fluid vh-100">
+    <div className="container-fluid">
       {/*//HEADER affichage indépendant de la navigation*/}
       <div className="row mb-4">
         <Navbar />

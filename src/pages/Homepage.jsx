@@ -1,7 +1,6 @@
 import React from 'react';
 import Welcome from '../components/Welcome';
 import Cvstore from '../components/Cvstore';
-// import Hello from '../components/Hello.jsx';
 
 function Homepage() {
   return (
