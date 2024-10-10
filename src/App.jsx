@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="container-fluid vh-100">
       {/*//HEADER affichage indépendant de la navigation*/}
-      <div className="row">
+      <div className="row mb-4">
         <Navbar />
       </div>
 
