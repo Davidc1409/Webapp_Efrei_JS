@@ -11,7 +11,6 @@ export default function Register() {
       initialValues={{
         name: '',
         email: '',
-        login: '',
         password: '',
         confirmPassword: ''
       }}
@@ -30,7 +29,6 @@ export default function Register() {
           .max(10, 'Must be 15 characters or less')
           .required('Required'),
         email: Yup.string().email('Invalid email address').required('Required'),
-        login: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
         password: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
         confirmPassword: Yup.string()
           .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -47,11 +45,6 @@ export default function Register() {
             <label htmlFor="email">Email:</label>
             <Field className="form-control" type="email" name="email" />
             <ErrorMessage style={{ color: 'red' }} name="email" component="div" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="login">Login:</label>
-            <Field className="form-control" type="login" name="login" />
-            <ErrorMessage style={{ color: 'red' }} name="login" component="div" />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
