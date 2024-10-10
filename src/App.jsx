@@ -4,6 +4,7 @@ import Register from './pages/Register';
 import './App.css'
 import Navbar from './components/NavBar';
 import { Route, Routes } from 'react-router-dom';
+import CVManagement from './pages/CVManagament';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route index path="/" element={<Homepage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cvmanagement" element={<CVManagement />} />
       </Routes>
     </div>
   )
