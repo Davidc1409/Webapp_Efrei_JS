@@ -8,11 +8,11 @@ Navbar.propTypes = {
 
 export default function Navbar({}) {
     const navItems = [
-        {"Home" : "http://localhost:5173"},
+        {"Home" : "/"},
         // {"Count" : "http://localhost:5173/count"},
         // {"FilterList" : "http://localhost:5173/filterlist"},
         // {"Users" : "http://localhost:5173/users"},
-        {"Register" : "http://localhost:5173/register"},
+        {"Register" : "/register"},
         // {"Login" : "http://localhost:5173/login"}
     ]
 
@@ -24,9 +24,9 @@ export default function Navbar({}) {
     });
 
   return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary row">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">Efrei ReactJS</a>
+          <a className="navbar-brand" href="/">Efrei CV App</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
