@@ -8,11 +8,11 @@ Navbar.propTypes = {
 export default function Navbar({}) {
     const navItems = [
         {"Home" : "/"},
-        // {"Count" : "http://localhost:5173/count"},
         // {"FilterList" : "http://localhost:5173/filterlist"},
         // {"Users" : "http://localhost:5173/users"},
+        {"My CVs" : "/cvmanagement"},
         {"Register" : "/register"},
-        // {"Login" : "http://localhost:5173/login"}
+        {"Login" : "/login"}
     ]
 
     let listNavItem = [];

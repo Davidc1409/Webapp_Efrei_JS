@@ -24,13 +24,12 @@ export default function Cvstore() {
   }, [criteria, cvs]);
 
   return (
-    <div className='mt-5'>
+    <div className='mt-5 d-flex flex-column align-items-center'>
         <Searchcv criteria={criteria} setCriteria={setCriteria}/>
         <section className='bg-body-tertiary col-12 d-flex flex-row flex-wrap gap-3 justify-content-center p-5'>
             {filteredCvs.map((cv) => (
             <Cardcv key={cv.id} cv={cv} />
-            ))}
-            
+            ))}  
         </section>
     </div>
   );
