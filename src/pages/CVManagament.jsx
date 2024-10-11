@@ -3,6 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 export default function CVManagement() {
+  const [visible, setVisible] = useState(0);
 
   return (
     <div className='container col-8'>
@@ -14,6 +15,11 @@ export default function CVManagement() {
           education: '',
           workExperience: '',
           visible: false
+        }}
+
+        onSubmit={async (values) => {
+          console.log(values.visible)
+          setVisible(values.visible)
         }}
 
         validationSchema={Yup.object({
