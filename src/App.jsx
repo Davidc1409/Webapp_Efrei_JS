@@ -2,7 +2,7 @@ import { useState,useContext } from 'react'
 import Homepage from './pages/Homepage';
 import Register from './pages/Register';
 import './App.css'
-import Navbar from './components/NavBar';
+import Navbar from './components/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import CVManagement from './pages/CVManagement';
 import CVDetails from './pages/CVDetails';

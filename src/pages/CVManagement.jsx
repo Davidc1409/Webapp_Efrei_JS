@@ -12,7 +12,8 @@ export default function CVManagement({}) {
     const info = JSON.parse(userInfo);
     token = info.token;
   }
-  const[addOrUpdate, setAddOrUpdate] = useState(false)
+  const [buttonAddOrUpdateState, setButtonAddOrUpdateState] = useState('Créer');
+  const [addOrUpdate, setAddOrUpdate] = useState(false)
   const [cvCreated, setCvCreated] = useState(false);
   const [cvData, setCvData] = useState({
     id: '',
@@ -53,6 +54,23 @@ export default function CVManagement({}) {
     fetchCv();
   }, []);
 
+  const handleDeleteCv = async (value)=>{
+    console.log(value)
+    const id = value;
+    const deleteCv = await fetch(`https://api-efrei-cv-js.onrender.com/api/cv/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization' : `Bearer ${token}`
+      },
+    });
+    const data = await deleteCv.json();
+    if(data){
+      console.log(data);
+      navigate(`/`);
+    }
+  }
   
 
   return (
@@ -75,9 +93,12 @@ export default function CVManagement({}) {
             });
             const data = await postForm.json();
             console.log(data);
+            setCvData({...data});
+            navigate(`/cvmanagement`);
+            console.log(cvData);
           }
           else{
-            console.log(values)
+            
             const postForm = await fetch(`https://api-efrei-cv-js.onrender.com/api/cv/`, {
               method: 'POST',
               headers: {
@@ -88,7 +109,11 @@ export default function CVManagement({}) {
               body: JSON.stringify(values)
             });
             const data = await postForm.json();
+            console.log(data)
             setCvData({...data});
+            navigate(`/cvmanagement`);
+            console.log(cvData);
+
           }
           
         }}
@@ -128,7 +153,7 @@ export default function CVManagement({}) {
             </div>
             <div>
               <button className="btn btn-primary mt-3" type="submit" disabled={isSubmitting}>
-                Créer
+                {buttonAddOrUpdateState}
               </button>
             </div>
           </Form>
@@ -144,13 +169,19 @@ export default function CVManagement({}) {
           <p><strong>Formations:</strong> {cvData.experiencesPedagogiques}</p>
           <p><strong>Expériences professionnelles:</strong> {cvData.experiencesProfessionnelles}</p>
           <p><strong>CV Visible:</strong> {cvData.visibility ? "Oui" : "Non"}</p>
-          
-          <button className="btn btn-primary mt-3" onClick={() => {
-            navigate(`/cvmanagement/?id=${cvData.id}`)
-            setCvCreated(false)
-            setAddOrUpdate(true)}}>
-            Modifier le CV
-          </button>
+          <div style={{display : "flex", gap : "1rem", justifyContent : "center"}}>
+            <button className="btn btn-primary mt-3" onClick={() => {
+              navigate(`/cvmanagement/?id=${cvData.id}`)
+              setCvCreated(false)
+              setAddOrUpdate(true)
+              setButtonAddOrUpdateState("Modifier")}}>
+              Modifier le CV
+            </button>
+            <button className="btn btn-primary mt-3" onClick={() => {
+              handleDeleteCv(cvData.id);}}>
+              Supprimer mon CV
+            </button>
+          </div>
         </div>
       )}
     </div>
