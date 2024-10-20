@@ -69,7 +69,7 @@ export default function Register() {
 
             <div className="form-group">
               <label htmlFor="confirmPassword">Confirm Password:</label>
-              <Field className="form-control" type="confirmPassword" name="confirmPassword" />
+              <Field className="form-control" type="password" name="confirmPassword" />
               <ErrorMessage style={{ color: 'red' }} name="confirmPassword" component="div" />
             </div>
             <div>
