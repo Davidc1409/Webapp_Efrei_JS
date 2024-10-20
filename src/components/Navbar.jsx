@@ -25,28 +25,27 @@ function Navbar({}) {
                 <Link to={'/'} className={'nav-link'}>
                 Home
                 </Link>
-                {/* <a className="nav-link" href="/">Home</a> */}
               </li>
               { user &&
                 (<li className="nav-item">
                   <Link to={'/cvmanagement'} className={'nav-link'}>
                     My CV
                   </Link>
-                  {/* <a className="nav-link" href="/cvmanagement">My CV</a> */}
-                </li>)
+                </li>
+                )
               }
-              <li className="nav-item">
-                <Link to={'/register'} className={'nav-link'}>
-                  Register
-                </Link>
-                {/* <a className="nav-link" href="/register">Register</a> */}
-              </li>
+              {!user && (
+                <li className="nav-item">
+                  <Link to={'/register'} className={'nav-link'}>
+                    Register
+                  </Link>
+                </li>
+                )}
               {user ? 
                 (<li className="nav-item">
                   <Link to={'/register'} className={'nav-link'} onClick={(e)=>logout(e)}>
                     Logout
                   </Link>
-                 {/* <a href="/" className={'nav-link'} onClick={(e)=>logout(e)}>Logout</a> */}
                 </li>)
                 :
                 (<li className="nav-item">
@@ -55,7 +54,6 @@ function Navbar({}) {
                   </Link>
                 </li>)
               }
-              
             </ul>
           </div>
         </div>

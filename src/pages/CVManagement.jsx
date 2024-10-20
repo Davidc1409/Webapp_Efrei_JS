@@ -93,8 +93,16 @@ export default function CVManagement({}) {
             });
             const data = await postForm.json();
             console.log(data);
-            setCvData({...data});
-            navigate(`/cvmanagement`);
+            setCvData({
+              id: data.id,
+              surname: data.author.surname,
+              lastname: data.author.surname,
+              description: data.description,
+              experiencesPedagogiques: data.experiencesPedagogiques,
+              experiencesProfessionnelles: data.experiencesProfessionnelles,
+              visibility: data.visibility
+            });
+            // navigate(`/cvmanagement`);
             console.log(cvData);
           }
           else{
@@ -110,8 +118,16 @@ export default function CVManagement({}) {
             });
             const data = await postForm.json();
             console.log(data)
-            setCvData({...data});
-            navigate(`/cvmanagement`);
+            setCvData({
+              id: data.id,
+              surname: data.author.surname,
+              lastname: data.author.surname,
+              description: data.description,
+              experiencesPedagogiques: data.experiencesPedagogiques,
+              experiencesProfessionnelles: data.experiencesProfessionnelles,
+              visibility: data.visibility
+            });
+            // navigate(`/cvmanagement`);
             console.log(cvData);
 
           }

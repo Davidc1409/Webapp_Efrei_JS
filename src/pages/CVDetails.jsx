@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth, UserContext } from '../context/UserContext';
 
 export default function CVDetails() {
@@ -10,6 +10,7 @@ export default function CVDetails() {
     const [cv, setCv] = useState(null)
     const { getUserInfos } = useContext(UserContext);
     const userInfo = getUserInfos();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCv = async () => {   
@@ -43,10 +44,10 @@ export default function CVDetails() {
         });
         
         const data = await response.json();
-        console.log(data);
         setRecommendations((previous) => [...previous, data]);
+        console.log(recommendations);
         setNewRecommendation('');
-
+        navigate('/');
     }
 
     if (!cv) {
@@ -85,7 +86,7 @@ export default function CVDetails() {
                 </button>
               </form>
             ) : (
-                <a href="/login">Se connecter pour laisser une recommandation</a>
+                <link to={'/login'}>Se connecter pour laisser une recommandation</link>
             )}
           </div>
         </div>
