@@ -14,7 +14,7 @@ export default function Cardcv({cv}) {
         <div className="card-body">
             <h5 className="card-title">{cv.author.surname} {cv.author.lastname}</h5>
             <p className="card-text">{cv.description}</p>
-            <a href="#" className="btn btn-primary" onClick={ViewCv}>voir le CV</a>
+            <a href="" className="btn btn-primary" onClick={ViewCv}>voir le CV</a>
         </div>
     </div>
   );
