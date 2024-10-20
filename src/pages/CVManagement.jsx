@@ -92,15 +92,16 @@ export default function CVManagement({}) {
               body: JSON.stringify(values)
             });
             const data = await postForm.json();
+            const cv = data[0];
             console.log(data);
             setCvData({
-              id: data.id,
-              surname: data.author.surname,
-              lastname: data.author.surname,
-              description: data.description,
-              experiencesPedagogiques: data.experiencesPedagogiques,
-              experiencesProfessionnelles: data.experiencesProfessionnelles,
-              visibility: data.visibility
+              id: cv.id,
+              surname: cv.author.surname,
+              lastname: cv.author.surname,
+              description: cv.description,
+              experiencesPedagogiques: cv.experiencesPedagogiques,
+              experiencesProfessionnelles: cv.experiencesProfessionnelles,
+              visibility: cv.visibility
             });
             // navigate(`/cvmanagement`);
             console.log(cvData);
@@ -117,15 +118,16 @@ export default function CVManagement({}) {
               body: JSON.stringify(values)
             });
             const data = await postForm.json();
+            const cv = data[0];
             console.log(data)
             setCvData({
-              id: data.id,
-              surname: data.author.surname,
-              lastname: data.author.surname,
-              description: data.description,
-              experiencesPedagogiques: data.experiencesPedagogiques,
-              experiencesProfessionnelles: data.experiencesProfessionnelles,
-              visibility: data.visibility
+              id: cv.id,
+              surname: cv.author.surname,
+              lastname: cv.author.surname,
+              description: cv.description,
+              experiencesPedagogiques: cv.experiencesPedagogiques,
+              experiencesProfessionnelles: cv.experiencesProfessionnelles,
+              visibility: cv.visibility
             });
             // navigate(`/cvmanagement`);
             console.log(cvData);
