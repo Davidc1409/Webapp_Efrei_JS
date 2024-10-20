@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import Homepage from './pages/Homepage';
 import Register from './pages/Register';
 import './App.css'
@@ -7,9 +7,10 @@ import { Route, Routes } from 'react-router-dom';
 import CVManagement from './pages/CVManagement';
 import CVDetails from './pages/CVDetails';
 import Login from './pages/Login';
+import {UserContext } from './context/UserContext';
 
 function App() {
-
+  
   return (
     <div className="container-fluid">
       {/*//HEADER affichage indépendant de la navigation*/}

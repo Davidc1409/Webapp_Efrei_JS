@@ -11,7 +11,7 @@ export default function Cvstore() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const response = await fetch('https://api-efrei-cv-js.onrender.com/api/cv/');
       const data = await response.json();
       console.log(data);
       setCvs(data);
@@ -20,7 +20,11 @@ export default function Cvstore() {
   }, []);
 
   useEffect(() => {
-    setfilteredCvs(cvs.filter((cv) => cv.name.toLowerCase().includes(criteria.toLowerCase())));
+    setfilteredCvs(cvs.filter((cv) => {
+      if(cv.author.surname.toLowerCase().includes(criteria.toLowerCase()) || cv.author.lastname.toLowerCase().includes(criteria.toLowerCase()) ){
+        return true;
+      }
+       }));
   }, [criteria, cvs]);
 
   return (
@@ -28,7 +32,7 @@ export default function Cvstore() {
         <Searchcv criteria={criteria} setCriteria={setCriteria}/>
         <section className='bg-body-tertiary col-12 d-flex flex-row flex-wrap gap-3 justify-content-center p-5'>
             {filteredCvs.map((cv) => (
-            <Cardcv key={cv.id} cv={cv} />
+            <Cardcv key={cv._id} cv={cv} />
             ))}  
         </section>
     </div>

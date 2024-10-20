@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../context/UserContext';
+import { useAuth, UserContext } from '../context/UserContext';
 
 export default function CVDetails() {
     const {id} = useParams()
@@ -8,17 +8,19 @@ export default function CVDetails() {
     const [recommendations, setRecommendations] = useState([])
     const [newRecommendation, setNewRecommendation] = useState('');
     const [cv, setCv] = useState(null)
+    const { getUserInfos } = useContext(UserContext);
+    const userInfo = getUserInfos();
 
     useEffect(() => {
         const fetchCv = async () => {   
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+            const response = await fetch(`https://api-efrei-cv-js.onrender.com/api/cv/${id}`);
             const data = await response.json()
             setCv(data)
         }
         fetchCv();
 
         const fetchRecommandation = async () => {
-            const response = await fetch(`/api/recommendations/${id}`);
+            const response = await fetch(`https://api-efrei-cv-js.onrender.com/api/recommendation/${id}/recommendations`);
             const data = await response.json();
             setRecommendations(data);
         }
@@ -32,10 +34,11 @@ export default function CVDetails() {
             return;
         }
 
-        const response = await fetch(`/api/recommandations/${id}`, {
+        const response = await fetch(`https://api-efrei-cv-js.onrender.com/api/recommendation/${id}/recommendation/`, {
             method: 'POST',
             headers: {
-             'Content-Type': 'application/json'
+             'Content-Type': 'application/json',
+             'Authorization' : `Bearer ${userInfo.token}`
             },
             body: JSON.stringify({ user: user.name, text: newRecommendation })
         });
@@ -51,18 +54,19 @@ export default function CVDetails() {
     }
 
     return (
+      // <></>
         <div className="container">
-          <h1>{cv.name}</h1>
-          <p>Email: {cv.email}</p>
-          <p>Téléphone: {cv.phone}</p>
-          <p>Adresse: {cv.address.street}, {cv.address.city}</p>
-          <p>Société: {cv.company.name}</p>
+          <h1>{cv.author.surname} {cv.author.lastname}</h1>
+          {/* <p>Email: {cv.email}</p> */}
+          <p>Description : {cv.description}</p>
+          <p>Formations : {cv.experiencesPedagogiques}</p>
+          <p>Expériences professionelles : {cv.experiencesProfessionnelles}</p>
     
           <div className="recommendations">
             <h2>Recommandations</h2>
             {recommendations.map((rec, index) => (
               <div key={index} className="recommendation">
-                <strong>{rec.user}:</strong> {rec.text}
+                <strong>{rec.RecAuthor.surname} {rec.RecAuthor.lastname} : </strong> {rec.text}
               </div>
             ))}
     

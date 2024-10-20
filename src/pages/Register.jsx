@@ -10,24 +10,33 @@ export default function Register() {
     <div className='container col-6'>
       <Formik
         initialValues={{
-          name: '',
+          surname: '',
+          lastname: '',
           email: '',
           password: '',
           confirmPassword: ''
         }}
         onSubmit={async (values) => {
-          const postForm = await fetch('https://jsonplaceholder.typicode.com/users', {
+          const postForm = await fetch('https://api-efrei-cv-js.onrender.com/api/auth/register', {
             method: 'POST',
-            data: values
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
           });
           const data = await postForm.json();
           console.log(data);
           navigate('/');
         }}
         validationSchema={Yup.object({
-          name: Yup.string()
+          surname: Yup.string()
             .min(3, 'Must be at least 3 characters')
-            .max(10, 'Must be 15 characters or less')
+            .max(20, 'Must be 15 characters or less')
+            .required('Required'),
+          lastname: Yup.string()
+            .min(3, 'Must be at least 3 characters')
+            .max(20, 'Must be 15 characters or less')
             .required('Required'),
           email: Yup.string().email('Invalid email address').required('Required'),
           password: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
@@ -38,9 +47,14 @@ export default function Register() {
         {({ isSubmitting }) => (
           <Form className=' d-flex flex-column gap-3'>
             <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <Field className="form-control" type="name" name="name" />
-              <ErrorMessage style={{ color: 'red' }} name="name" component="div" />
+              <label htmlFor="name">Surname:</label>
+              <Field className="form-control" type="surname" name="surname" />
+              <ErrorMessage style={{ color: 'red' }} name="surname" component="div" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="name">Lastname:</label>
+              <Field className="form-control" type="lastname" name="lastname" />
+              <ErrorMessage style={{ color: 'red' }} name="lastname" component="div" />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email:</label>
@@ -54,9 +68,9 @@ export default function Register() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="confirPassword">Confirm Password:</label>
-              <Field className="form-control" type="confirPassword" name="confirPassword" />
-              <ErrorMessage style={{ color: 'red' }} name="password" component="div" />
+              <label htmlFor="confirmPassword">Confirm Password:</label>
+              <Field className="form-control" type="confirmPassword" name="confirmPassword" />
+              <ErrorMessage style={{ color: 'red' }} name="confirmPassword" component="div" />
             </div>
             <div>
               <button className="btn btn-primary mt-3" type="submit" disabled={isSubmitting}>
