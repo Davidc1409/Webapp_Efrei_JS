@@ -22,19 +22,31 @@ function Navbar({}) {
           <div className="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" href="/">Home</a>
+                <Link to={'/'} className={'nav-link'}>
+                Home
+                </Link>
+                {/* <a className="nav-link" href="/">Home</a> */}
               </li>
               { user &&
                 (<li className="nav-item">
-                  <a className="nav-link" href="/cvmanagement">My CV</a>
+                  <Link to={'/cvmanagement'} className={'nav-link'}>
+                    My CV
+                  </Link>
+                  {/* <a className="nav-link" href="/cvmanagement">My CV</a> */}
                 </li>)
               }
               <li className="nav-item">
-                <a className="nav-link" href="/register">Register</a>
+                <Link to={'/register'} className={'nav-link'}>
+                  Register
+                </Link>
+                {/* <a className="nav-link" href="/register">Register</a> */}
               </li>
               {user ? 
                 (<li className="nav-item">
-                 <a href="/" className={'nav-link'} onClick={(e)=>logout(e)}>Logout</a>
+                  <Link to={'/register'} className={'nav-link'} onClick={(e)=>logout(e)}>
+                    Logout
+                  </Link>
+                 {/* <a href="/" className={'nav-link'} onClick={(e)=>logout(e)}>Logout</a> */}
                 </li>)
                 :
                 (<li className="nav-item">

@@ -33,7 +33,6 @@ export default function CVDetails() {
         if (!newRecommendation) {
             return;
         }
-
         const response = await fetch(`https://api-efrei-cv-js.onrender.com/api/recommendation/${id}/recommendation/`, {
             method: 'POST',
             headers: {
@@ -44,6 +43,7 @@ export default function CVDetails() {
         });
         
         const data = await response.json();
+        console.log(data);
         setRecommendations((previous) => [...previous, data]);
         setNewRecommendation('');
 
