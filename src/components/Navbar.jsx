@@ -43,7 +43,7 @@ function Navbar({}) {
                 )}
               {user ? 
                 (<li className="nav-item">
-                  <Link to={'/register'} className={'nav-link'} onClick={(e)=>logout(e)}>
+                  <Link to={'/'} className={'nav-link'} onClick={(e)=>logout(e)}>
                     Logout
                   </Link>
                 </li>)

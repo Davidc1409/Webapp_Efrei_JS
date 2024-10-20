@@ -55,7 +55,6 @@ export default function CVManagement({}) {
   }, []);
 
   const handleDeleteCv = async (value)=>{
-    console.log(value)
     const id = value;
     const deleteCv = await fetch(`https://api-efrei-cv-js.onrender.com/api/cv/${id}`, {
       method: 'DELETE',
@@ -72,7 +71,7 @@ export default function CVManagement({}) {
     }
   }
   
-
+  
   return (
     <div className='container col-8'>
       {!cvCreated ? (
@@ -92,19 +91,14 @@ export default function CVManagement({}) {
               body: JSON.stringify(values)
             });
             const data = await postForm.json();
-            const cv = data[0];
-            console.log(data);
             setCvData({
-              id: cv.id,
-              surname: cv.author.surname,
-              lastname: cv.author.surname,
-              description: cv.description,
-              experiencesPedagogiques: cv.experiencesPedagogiques,
-              experiencesProfessionnelles: cv.experiencesProfessionnelles,
-              visibility: cv.visibility
+              id: data._id,
+              description: data.description,
+              experiencesPedagogiques: data.experiencesPedagogiques,
+              experiencesProfessionnelles: data.experiencesProfessionnelles,
+              visibility: data.visibility
             });
-            // navigate(`/cvmanagement`);
-            console.log(cvData);
+            setCvCreated(true)
           }
           else{
             
@@ -118,19 +112,14 @@ export default function CVManagement({}) {
               body: JSON.stringify(values)
             });
             const data = await postForm.json();
-            const cv = data[0];
-            console.log(data)
             setCvData({
-              id: cv.id,
-              surname: cv.author.surname,
-              lastname: cv.author.surname,
-              description: cv.description,
-              experiencesPedagogiques: cv.experiencesPedagogiques,
-              experiencesProfessionnelles: cv.experiencesProfessionnelles,
-              visibility: cv.visibility
+              id: data._id,
+              description: data.description,
+              experiencesPedagogiques: data.experiencesPedagogiques,
+              experiencesProfessionnelles: data.experiencesProfessionnelles,
+              visibility: data.visibility
             });
-            // navigate(`/cvmanagement`);
-            console.log(cvData);
+            setCvCreated(true)
 
           }
           

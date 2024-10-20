@@ -45,9 +45,8 @@ export default function CVDetails() {
         
         const data = await response.json();
         setRecommendations((previous) => [...previous, data]);
-        console.log(recommendations);
+        console.log(data);
         setNewRecommendation('');
-        navigate('/');
     }
 
     if (!cv) {
