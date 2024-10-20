@@ -12,6 +12,7 @@ export default function CVManagement({}) {
     const info = JSON.parse(userInfo);
     token = info.token;
   }
+  const[addOrUpdate, setAddOrUpdate] = useState(false)
   const [cvCreated, setCvCreated] = useState(false);
   const [cvData, setCvData] = useState({
     id: '',
@@ -61,8 +62,7 @@ export default function CVManagement({}) {
         initialValues={cvData}
 
         onSubmit={async (values) => {
-          console
-          if(!cvCreated){
+          if(addOrUpdate){
             const id = values.id;
             const postForm = await fetch(`https://api-efrei-cv-js.onrender.com/api/cv/${id}`, {
               method: 'PUT',
@@ -88,6 +88,7 @@ export default function CVManagement({}) {
               body: JSON.stringify(values)
             });
             const data = await postForm.json();
+            setCvData({...data});
           }
           
         }}
@@ -146,7 +147,8 @@ export default function CVManagement({}) {
           
           <button className="btn btn-primary mt-3" onClick={() => {
             navigate(`/cvmanagement/?id=${cvData.id}`)
-            setCvCreated(false)}}>
+            setCvCreated(false)
+            setAddOrUpdate(true)}}>
             Modifier le CV
           </button>
         </div>
