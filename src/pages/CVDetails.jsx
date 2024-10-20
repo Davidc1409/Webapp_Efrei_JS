@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useAuth, UserContext } from '../context/UserContext';
 
 export default function CVDetails() {
@@ -85,7 +85,7 @@ export default function CVDetails() {
                 </button>
               </form>
             ) : (
-                <link to={'/login'}>Se connecter pour laisser une recommandation</link>
+                <Link to={'/login'}>Se connecter pour laisser une recommandation</Link>
             )}
           </div>
         </div>
